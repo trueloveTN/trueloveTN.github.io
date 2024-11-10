@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AdminTF on Universal</title>
+    <link>http://localhost:1313/hugo-universal-theme/authors/admintf/</link>
+    <description>Recent content in AdminTF on Universal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Nov 2024 23:23:23 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/hugo-universal-theme/authors/admintf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linked post</title>
+      <link>http://localhost:1313/hugo-universal-theme/blog/2024/11/09/linked-post-copy/</link>
+      <pubDate>Sat, 09 Nov 2024 23:23:23 +0800</pubDate>
+      <guid>http://localhost:1313/hugo-universal-theme/blog/2024/11/09/linked-post-copy/</guid>
+      <description>&lt;p&gt;img=&amp;ldquo;img/serv_list_1.png&amp;rdquo;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
