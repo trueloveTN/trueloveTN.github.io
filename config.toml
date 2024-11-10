@@ -86,7 +86,7 @@ id = ""
     weight     = 3
 
 [[menu.main]]
-    name       = "收費基準表"
+    name       = "收費基準"
     identifier = "section.portfolio"
     url        = ""
     weight     = 1
