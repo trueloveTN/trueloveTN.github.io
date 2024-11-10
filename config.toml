@@ -88,7 +88,7 @@ id = ""
 [[menu.main]]
     name       = "收費基準表"
     identifier = "section.portfolio"
-    url        = "https://www.timefree.com.tw/6"
+    url        = ""
     weight     = 1
     parent     = "menu.portfolio"
     post       = 1
@@ -97,7 +97,7 @@ id = ""
 
 [[menu.main]]
     name       = "收費基準表"
-    url        = "/blog/2024/11/09/linked-post/"
+    url        = "https://www.timefree.com.tw/6"
     weight     = 8
     parent     = "section.portfolio"
 
