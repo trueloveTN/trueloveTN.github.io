@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Universal</title>
+    <link>https://devcows.github.io/hugo-universal-theme/</link>
+    <description>Recent content on Universal</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 09 Nov 2024 23:23:23 +0800</lastBuildDate>
+    <atom:link href="https://devcows.github.io/hugo-universal-theme/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linked post</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/2024/11/09/linked-post/</link>
+      <pubDate>Sat, 09 Nov 2024 23:23:23 +0800</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/2024/11/09/linked-post/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a linked post in the menu. You can add other posts by adding the following line to the frontmatter:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;menu = &amp;quot;main&amp;quot;&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mauris nulla, vestibulum vel auctor sed, posuere eu lorem. Aliquam consequat augue ut accumsan mollis. Suspendisse malesuada sodales tincidunt. Vivamus sed erat ac augue bibendum porta sed id ipsum. Ut mollis mauris eget ligula sagittis cursus. Aliquam id pharetra tellus. Pellentesque sed tempus risus. Proin id hendrerit ante. Vestibulum vitae urna ut mauris ultricies dignissim. Ut ante turpis, tristique vitae sagittis quis, sagittis nec diam. Fusce pulvinar cursus porta. Vivamus maximus leo dolor, ut pellentesque lorem fringilla nec. Mauris faucibus turpis posuere sapien euismod, a ullamcorper mi maximus.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Categories Post</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/2021/08/01/categories-post/</link>
+      <pubDate>Sun, 01 Aug 2021 21:29:20 +0200</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/2021/08/01/categories-post/</guid>
+      <description>&lt;p&gt;I&amp;rsquo;m a post with multiple categories in the frontmatter:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;categories = [&amp;quot;programming&amp;quot;,&amp;quot;lorem&amp;quot;,&amp;quot;pseudo&amp;quot;]&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. In mauris nulla, vestibulum vel auctor sed, posuere eu lorem. Aliquam consequat augue ut accumsan mollis. Suspendisse malesuada sodales tincidunt. Vivamus sed erat ac augue bibendum porta sed id ipsum. Ut mollis mauris eget ligula sagittis cursus. Aliquam id pharetra tellus. Pellentesque sed tempus risus. Proin id hendrerit ante. Vestibulum vitae urna ut mauris ultricies dignissim. Ut ante turpis, tristique vitae sagittis quis, sagittis nec diam. Fusce pulvinar cursus porta. Vivamus maximus leo dolor, ut pellentesque lorem fringilla nec. Mauris faucibus turpis posuere sapien euismod, a ullamcorper mi maximus.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Go is for lovers</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/2015/09/17/go-is-for-lovers/</link>
+      <pubDate>Thu, 17 Sep 2015 13:47:08 +0200</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/2015/09/17/go-is-for-lovers/</guid>
+      <description>&lt;p&gt;Hugo uses the excellent &lt;a href=&#34;http://golang.org/&#34;&gt;go&lt;/a&gt; &lt;a href=&#34;http://golang.org/pkg/html/template/&#34;&gt;html/template&lt;/a&gt; library for&#xA;its template engine. It is an extremely lightweight engine that provides a very&#xA;small amount of logic. In our experience that it is just the right amount of&#xA;logic to be able to create a good static website. If you have used other&#xA;template systems from different languages or frameworks you will find a lot of&#xA;similarities in go templates.&lt;/p&gt;&#xA;&lt;p&gt;This document is a brief primer on using go templates. The &lt;a href=&#34;http://golang.org/pkg/html/template/&#34;&gt;go docs&lt;/a&gt;&#xA;provide more details.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hugo is for lovers</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/2015/08/03/hugo-is-for-lovers/</link>
+      <pubDate>Mon, 03 Aug 2015 13:39:46 +0200</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/2015/08/03/hugo-is-for-lovers/</guid>
+      <description>This is the summary Goto &lt;a href=&#34;https://github.com/spf13/hugo/releases&#34;&gt;hugo releases&lt;/a&gt; and download the appropriate version for your os and architecture. Save it somewhere specific as we will be using it in the next step. More complete instructions are available at &lt;a href=&#34;https://devcows.github.io/hugo-universal-theme/overview/installing/&#34;&gt;installing hugo&lt;/a&gt;</description>
+    </item>
+    <item>
+      <title>Creating a new theme</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/2015/06/24/creating-a-new-theme/</link>
+      <pubDate>Wed, 24 Jun 2015 13:50:46 +0200</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/2015/06/24/creating-a-new-theme/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.&lt;/p&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll start with creating a new site with a very basic template. Then we&amp;rsquo;ll add in a few pages and posts. With small variations on that, you will be able to create many different types of web sites.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>https://devcows.github.io/hugo-universal-theme/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/contact/</guid>
+      <description>&lt;h1 id=&#34;we-are-here-to-help-you&#34;&gt;We are here to help you&lt;/h1&gt;&#xA;&lt;p&gt;您在煩惱沒有人照顧長輩嗎？還不清楚居家服務可以做哪些事情嗎？&#xA;沒問題！昶青都樂意為您解答唷&lt;/p&gt;&#xA;&lt;p&gt;長照疑難雜症免煩惱 ，一通電話辦好好!昶青長照策略聯盟：0911-096-151 吳主任&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>FAQ</title>
+      <link>https://devcows.github.io/hugo-universal-theme/faq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/faq/</guid>
+      <description>&lt;p&gt;常見長照問題諮詢&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-什麼對象符合長照補助資格&#34;&gt;1. 什麼對象符合長照補助資格?&lt;/h2&gt;&#xA;&lt;p&gt;六十五歲以上失能老人。&#xA;五十五歲以上失能原住民。&#xA;五十歲以上失智症者。&#xA;失能身心障礙者。&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-長照服務怎麼申請&#34;&gt;2. 長照服務怎麼申請?&lt;/h2&gt;&#xA;&lt;p&gt;長照疑難雜症免煩惱 ，一通電話辦好好!昶青長照策略聯盟：0911-096-151 吳主任&lt;/p&gt;&#xA;&lt;p&gt;或&lt;/p&gt;&#xA;&lt;p&gt;長照服務專線：1966&lt;/p&gt;&#xA;&lt;h2 id=&#34;3-有外勞可以申請長照服務嗎&#34;&gt;3. 有外勞可以申請長照服務嗎?&lt;/h2&gt;&#xA;&lt;p&gt;可以!&lt;/p&gt;&#xA;&lt;p&gt;可全自費使用居家照顧服務亦可使用補助的喘息服務喘息時間一年有84或126小時可以使用可以在外勞休假時短暫替代家中的照顧&lt;/p&gt;&#xA;&lt;h2 id=&#34;4-居家服務可以做什麼&#34;&gt;4. 居家服務可以做什麼?&lt;/h2&gt;&#xA;&lt;p&gt;身體清潔&#xA;餐食照顧&#xA;陪伴服務&#xA;日常照顧&#xA;家務協助&#xA;喘息服務&lt;/p&gt;&#xA;&lt;h2 id=&#34;5-居家服務是否可以陪你去看醫生&#34;&gt;5. 居家服務是否可以陪你去看醫生?&lt;/h2&gt;&#xA;&lt;p&gt;居家服務不只可以陪同就醫，也可以陪同復健、洗腎等。&lt;/p&gt;&#xA;&lt;h2 id=&#34;6-居家服務的費用計算方式&#34;&gt;6. 居家服務的費用計算方式??&lt;/h2&gt;&#xA;&lt;p&gt;依據您使用的項目、天數，逐一計費。&#xA;一般戶支付16%，中低收入戶支付5%，低收入戶 不須額外支付。&#xA;以大家常用的項目，用一般戶的費用來計算&#xA;餐食照顧，一餐為49元&#xA;協助沐浴及洗頭，一次52元&#xA;陪同外出，半小時31元&#xA;喘息服務，2小時123元。&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;如果還有任何不清楚的地方，歡迎直接來電06-2080697 0911-096-151&#xA;或來信 &lt;a href=&#34;mailto:truelovetainan@gmail.com&#34;&gt;truelovetainan@gmail.com&lt;/a&gt; 洽詢.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Migrate from Jekyll</title>
+      <link>https://devcows.github.io/hugo-universal-theme/blog/1/01/01/migrate-from-jekyll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://devcows.github.io/hugo-universal-theme/blog/1/01/01/migrate-from-jekyll/</guid>
+      <description>&lt;h2 id=&#34;move-static-content-to-static&#34;&gt;Move static content to &lt;code&gt;static&lt;/code&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Jekyll has a rule that any directory not starting with &lt;code&gt;_&lt;/code&gt; will be copied as-is to the &lt;code&gt;_site&lt;/code&gt; output. Hugo keeps all static content under &lt;code&gt;static&lt;/code&gt;. You should therefore move it all there.&#xA;With Jekyll, something that looked like&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/&#xA;    ▾ images/&#xA;        logo.png&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;should become&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;▾ &amp;lt;root&amp;gt;/&#xA;    ▾ static/&#xA;        ▾ images/&#xA;            logo.png&#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as &lt;code&gt;CNAME&lt;/code&gt;) to be moved to &lt;code&gt;static&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
