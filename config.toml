@@ -88,7 +88,7 @@ id = ""
 [[menu.main]]
     name       = "收費基準表"
     identifier = "section.portfolio"
-    url        = ""
+    url        = "https://www.timefree.com.tw/6"
     weight     = 1
     parent     = "menu.portfolio"
     post       = 1
