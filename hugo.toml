@@ -1,0 +1,114 @@
+baseURL = 'https://truelovetn.github.io/'
+languageCode = 'en-us'
+title = 'trueloveTN H.C.'
+
+
+[module]
+[[module.imports]]
+    path = 'github.com/devcows/hugo-universal-theme'
+
+
+
+
+[params]
+  subtitle = '臺南市私立崇愛居家長照機構'
+   style = "violet"
+   disabled_logo = false
+    logo_text = "trueloveTN"
+
+    logo = "img/logo.png"
+    logo_small = "img/logo-small.png"
+
+    about_us = "<p>本機構位於台南市南區，於113年成立，具備豐富專業知識與專業技能的照顧團隊，堅持職前培訓與在職培訓的原則，提供專業照護，滿足被照顧者的需求，以打造一個具有愛心、耐心、同理心、視病如親，追求卓越-高服務品質的照顧服務團隊，讓被照顧者受到最貼心、溫馨的照顧服務</p>"
+copyright = "Copyright (c) 2024 - , 臺南市私立崇愛居家長照機構 TrueLoveTainan H.C.; all rights reserved."
+   
+
+[params.contact]
+    email = 'truelovetainan@gmail.com'
+    phone = '+886 911-096-151'    
+
+
+
+
+
+[[menu.main]]
+    name       = "首頁"
+    identifier = "menu.hp"
+    url        = ""
+    weight     = 1
+
+ [[menu.main]]
+    name       = "最新消息"
+    identifier = "menu.NEWS"
+    url        = ""
+    weight     = 2
+
+ [[menu.main]]
+    name       = "捐款徵信"
+    identifier = "menu.donate"
+    url        = ""
+    weight     = 3
+
+[[menu.main]]
+    name       = "服務項目"
+    identifier = "menu.service"
+    url        = ""
+    weight     = 4
+
+[[menu.main]]
+    name       = "收費基準"
+    identifier = "section.service"
+    url        = ""
+    weight     = 1
+    parent     = "menu.service"
+    post       = 1
+
+[[menu.main]]
+    name       = "收費基準表"
+    url        = "/servlist/"
+    weight     = 1
+    parent     = "section.service"
+
+[[menu.main]]
+    name       = "長照Q&A"
+    identifier = "menu.QA"
+    url        = "/faq/"
+    weight     = 5
+
+
+
+
+
+[[menu.main]]
+    identifier = "Contact"
+    name       = "聯絡資訊"
+    url        = "/contact/"
+    weight     = 6
+
+
+
+[params.topbar]
+    enable = true
+    text = """<p class="hidden-sm hidden-xs">若需與我們聯絡 請致電 0911096151 or truelovetainan@gmail.com</p>
+      <p class="hidden-md hidden-lg"><a href="tel:+886 911 096 151" data-animate-hover="pulse"><i class="fas fa-phone"></i></a></p>
+      <p class="hidden-md hidden-lg"><a href="mailto:truelovetainan@gmail.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
+      </p>
+      """
+
+
+# Top bar social links menu
+
+[[menu.topbar]]
+    weight = 1
+    name = "Phone"
+    url = "tel:+886 911 096 151"
+    pre = "<i class='fas fa-2x fa-phone'></i>"
+
+
+[[menu.topbar]]
+    weight = 2
+    name = "Email"
+    url = "mailto:truelovetainan@gmail.com"
+
+
+
