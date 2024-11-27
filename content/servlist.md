@@ -11,7 +11,7 @@ img {
 
 查看下列圖表
 
-{{< image src="../img/servlist_1.png" alt="收費基準表p1" >}}
+{{< image src="../img/servlist_1.png" alt="收費基準表p1" style="width:50%;>}}
 {{< image src="../img/servlist_2.png" alt="收費基準表p2" >}}
 
 
