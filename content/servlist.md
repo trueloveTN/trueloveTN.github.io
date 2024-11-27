@@ -3,7 +3,10 @@ title = "服務項目基準表"
 
 +++
 
-
+img {
+    max-width: 100%;
+    height: auto;
+}
 # 如何收費
 
 查看下列圖表
