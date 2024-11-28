@@ -1,0 +1,17 @@
+{{ if .Get "href" }}
+  <a href="{{ .Get "href" }}" target="{{ .Get "target" | default "_self" }}">
+{{ end }}
+<img 
+  src="{{ .Get "src" }}" 
+  alt="{{ .Get "alt" | default "" }}" 
+  style="
+    width: {{ .Get "width" | default "auto" }};
+    height: {{ .Get "height" | default "auto" }};
+    max-width: {{ .Get "maxWidth" | default "100%" }};
+    display: {{ .Get "display" | default "block" }};
+    margin: {{ .Get "margin" | default "auto" }};
+  "
+/>
+{{ if .Get "href" }}
+  </a>
+{{ end }}
