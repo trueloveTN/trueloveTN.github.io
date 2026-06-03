@@ -105,7 +105,7 @@
 var GAS_URL = "https://script.google.com/macros/s/AKfycbzsfCeZ6XbKUaLl_R0wwqM9snrXSBWrJIZpr8SKVPqhxw4xc1zvGMUt3ogrbKCWjmcC/exec";
 
 (function() {
-  if (sessionStorage.getItem("staff_ok") === "ok") {
+  if (localStorage.getItem("staff_ok") === "ok") {
     window.location.href = "dashboard.html";
     return;
   }
