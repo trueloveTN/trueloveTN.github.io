@@ -37,6 +37,7 @@ function doGetSaveWatch(e) {
   }
 
   var idCard   = (e.parameter.idCard   || "").toUpperCase().trim();
+  var name     = (e.parameter.name     || "").trim();
   var videoId  = (e.parameter.videoId  || "").trim();
   var minutes  = parseInt(e.parameter.minutes, 10) || 0;
   var done     = e.parameter.done === "true";
@@ -46,8 +47,8 @@ function doGetSaveWatch(e) {
   var title = videoId;
   COURSES.forEach(function(c){ if(c.id === videoId) title = c.title; });
 
-  // 查姓名
-  var name = getNameByIdCard(idCard);
+  // 查姓名（優先用傳入的 name，沒有才查表）
+  if (!name) name = getNameByIdCard(idCard);
 
   var data = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
@@ -92,6 +93,7 @@ function doPostSaveWatch(p) {
   }
 
   var idCard  = (p.idCard  || "").toUpperCase().trim();
+  var name    = (p.name    || "").trim();
   var videoId = (p.videoId || "").trim();
   var minutes = parseInt(p.minutes) || 0;
   var done    = p.done === true || p.done === "true";
@@ -100,7 +102,7 @@ function doPostSaveWatch(p) {
   var title = videoId;
   COURSES.forEach(function(c){ if(c.id === videoId) title = c.title; });
 
-  var name  = getNameByIdCard(idCard);
+  var name  = name || getNameByIdCard(idCard);
   var data  = sheet.getDataRange().getValues();
   for (var i = 1; i < data.length; i++) {
     if ((data[i][1]||"").toString().toUpperCase().trim() === idCard &&

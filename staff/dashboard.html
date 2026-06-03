@@ -388,7 +388,7 @@ function bindYTPlayers() {
               // 播放中 → 先停其他影片的計時器（避免同時多個影片在跑）
               Object.keys(ytTimers).forEach(function(tid) {
                 if (tid !== thisVid) stopSimpleTracking(tid);
-              }.bind(this));
+              });
               console.log("▶️ 播放中，啟動計時器：" + thisVid);
               startSimpleTracking(thisVid);
             } else if (event.data === 2 || event.data === 0) {
@@ -458,9 +458,11 @@ function saveNow(vid) {
   localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
 
   // 寫入 GAS（GET 參數，避開 preflight CORS）
+  var staffName = localStorage.getItem("staff_name") || "";
   var url = GAS_URL
     + "?action=saveWatch"
     + "&idCard=" + encodeURIComponent(idCard)
+    + "&name=" + encodeURIComponent(staffName)
     + "&videoId=" + encodeURIComponent(vid)
     + "&minutes=" + encodeURIComponent(minutes)
     + "&done=" + encodeURIComponent(done);
