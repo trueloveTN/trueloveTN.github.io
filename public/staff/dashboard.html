@@ -385,10 +385,15 @@ function bindYTPlayers() {
             if (!thisVid) return;
 
             if (event.data === 1) {
-              console.log("▶️ 員工真正點擊播放，啟動計時器：" + thisVid);
+              // 播放中 → 先停其他影片的計時器（避免同時多個影片在跑）
+              Object.keys(ytTimers).forEach(function(tid) {
+                if (tid !== thisVid) stopSimpleTracking(tid);
+              }.bind(this));
+              console.log("▶️ 播放中，啟動計時器：" + thisVid);
               startSimpleTracking(thisVid);
-            } else {
-              console.log("⏸️ 影片暫停或結束，凍結計時器：" + thisVid);
+            } else if (event.data === 2 || event.data === 0) {
+              // PAUSED 或 ENDED → 只在確實已啟動計時器的影片才停止
+              console.log("⏸️ 暫停/結束，凍結計時器：" + thisVid);
               stopSimpleTracking(thisVid);
             }
           }
@@ -520,7 +525,7 @@ function exportMyRecords() {
     var rec = allRec[c.id] || {};
     output.push({
       "身份證字號": idCard,
-      "員工姓名": sessionStorage.getItem("staff_name") || "",
+      "員工姓名": localStorage.getItem("staff_name") || "",
       "影片ID": c.id,
       "課程名稱": c.title,
       "片長(分鐘)": c.duration,
