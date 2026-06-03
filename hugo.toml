@@ -5,6 +5,9 @@ title = '臺南市崇愛居家長照機構 T.L.H.C.'
 # number of words of summarized post content (default 70)
 summaryLength = 20
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [module]
 [[module.imports]]
     path = 'github.com/devcows/hugo-universal-theme'
@@ -15,7 +18,7 @@ summaryLength = 20
 [params]
 
   subtitle = '臺南市私立崇愛居家長照機構'
-   style = "violet"
+   style = "blue"
    disabled_logo = false
     logo_text = "trueloveTN"
 
@@ -29,13 +32,13 @@ formspree_action = "https://formspree.io/sample/of/endpoint"
     contact_form_ajax = false
 
 
-about_us = "<p>本機構位於台南市南區，於113年成立，具備豐富專業知識與專業技能的照顧團隊，堅持職前培訓與在職培訓的原則，提供專業照護，滿足被照顧者的需求，以打造一個具有愛心、耐心、同理心、視病如親，追求卓越-高服務品質的照顧服務團隊，讓被照顧者受到最貼心、溫馨的照顧服務</p>"
+about_us = "<p>本機構位於台南市東區，於113年成立，具備豐富專業知識與專業技能的照顧團隊，堅持職前培訓與在職培訓的原則，提供專業照護，滿足被照顧者的需求，以打造一個具有愛心、耐心、同理心、視病如親，追求卓越-高服務品質的照顧服務團隊，讓被照顧者受到最貼心、溫馨的照顧服務</p>"
 copyright = "Copyright (c) 2024 - , 臺南市私立崇愛居家長照機構 TrueLoveTainan H.C.; all rights reserved."
    
 contact_url = "/contact"
 address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
-        <br>臺南市南區新興路263-1號一樓
-        
+        <br>臺南市東區東門路三段253號11樓之3(1110室)
+        <br>
         <strong>台灣 (Taiwan)</strong>
       </p>
       """
@@ -45,7 +48,7 @@ address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
 
 [params.contact]
     email = 'truelovetainan@gmail.com'
-    phone = '+886 911-096-151'    
+    phone = '+886 6 2677109'    
 
 [params.clients]
     enable = true
@@ -115,6 +118,12 @@ address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
     url        = "/faq/"
     weight     = 5
 
+[[menu.main]]
+    name       = "員工專區"
+    identifier = "menu.staff"
+    url        = "/staff/login.html"
+    weight     = 6
+
 
 
 
@@ -123,13 +132,13 @@ address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
     identifier = "Contact"
     name       = "聯絡資訊"
     url        = "/contact/"
-    weight     = 6
+    weight     = 7
 
 [[menu.main]]
     name       = "頁面導覽"
     identifier = "menu.allpages"
     url        = ""
-    weight     = 7
+    weight     = 8
 [[menu.main]]
     name       = "服務花絮"
     identifier = "section.ap-blog"
@@ -182,8 +191,8 @@ address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
 
 [params.topbar]
     enable = true
-    text = """<p class="hidden-sm hidden-xs">若需與我們聯絡 請致電 0911096151 or truelovetainan@gmail.com</p>
-      <p class="hidden-md hidden-lg"><a href="tel:+886 911 096 151" data-animate-hover="pulse"><i class="fas fa-phone"></i></a></p>
+    text = """<p class="hidden-sm hidden-xs">若需與我們聯絡 請致電 06-2677109 or truelovetainan@gmail.com</p>
+      <p class="hidden-md hidden-lg"><a href="tel:+886 6 2677109" data-animate-hover="pulse"><i class="fas fa-phone"></i></a></p>
       <p class="hidden-md hidden-lg"><a href="mailto:truelovetainan@gmail.com" data-animate-hover="pulse"><i class="fas fa-envelope"></i></a>
       </p>
       """
@@ -194,7 +203,7 @@ address = """<p class="text-uppercase"><strong>崇愛居家長照機構</strong>
 [[menu.topbar]]
     weight = 10
     name = "Phone"
-    url = "tel:+886 911 096 151"
+    url = "tel:+886 6 2677109"
     pre = "<i class='fas fa-2x fa-phone'></i>"
 
 

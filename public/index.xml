@@ -2,80 +2,94 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>臺南市崇愛居家長照機構 T.L.H.C.</title>
-    <link>https://truelovetn.github.io/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on 臺南市崇愛居家長照機構 T.L.H.C.</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 05 Dec 2024 22:22:00 +0800</lastBuildDate>
-    <atom:link href="https://truelovetn.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Jan 2025 00:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>員工專區</title>
+      <link>http://localhost:1313/staff/dashboard/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/staff/dashboard/</guid>
+      <description>&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt;&#xA;&lt;!-- ===== 權限檢查 ===== --&gt;&#xA;&lt;script&gt;&#xA;(function() {&#xA;  if (sessionStorage.getItem(&#34;staff_auth&#34;) !== &#34;ok&#34;) {&#xA;    document.body.innerHTML = &#39;&lt;div style=&#34;max-width:420px;margin:80px auto;text-align:center;font-family:sans-serif;&#34;&gt;\&#xA;      &lt;h2&gt;🔒&lt;/h2&gt;&lt;p&gt;請先 &lt;a href=&#34;http://localhost:1313/staff/login/&#34;&gt;登入&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&#39;;&#xA;  }&#xA;})();&#xA;&lt;/script&gt;&#xA;&lt;style&gt;&#xA;body { font-family: &#39;Noto Sans TC&#39;, &#39;Helvetica Neue&#39;, sans-serif; }&#xA;.page-header { background: linear-gradient(135deg,#2c3e50,#34495e); color:#fff; padding:36px 0 32px; margin-bottom:36px; }&#xA;.page-header h1 { margin:0; font-size:26px; font-weight:600; }&#xA;.page-header p { margin:6px 0 0; opacity:0.75; font-size:14px; }&#xA;.staff-nav { margin-bottom:32px; }&#xA;.staff-nav a { display:inline-block; padding:8px 20px; border-radius:20px; background:#eee; color:#555; text-decoration:none; margin-right:8px; font-size:14px; transition:background 0.2s; }&#xA;.staff-nav a:hover, .staff-nav a.active { background:#e07b54; color:#fff; }&#xA;.section-title { color:#2c3e50; font-size:20px; font-weight:700; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid #e07b54; }&#xA;.notice-item { background:#fff; border-radius:8px; padding:20px; margin-bottom:14px; border-left:4px solid #e07b54; box-shadow:0 1px 6px rgba(0,0,0,0.07); }&#xA;.notice-item h4 { margin:0 0 6px; color:#2c3e50; font-size:16px; }&#xA;.notice-item .notice-date { font-size:12px; color:#aaa; }&#xA;.notice-item .notice-tag { display:inline-block; background:#fdf0ea; color:#c4623a; font-size:11px; padding:2px 8px; border-radius:10px; margin-left:8px; }&#xA;.video-card { background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.08); margin-bottom:28px; border:1px solid #eee; }&#xA;.video-card iframe { width:100%; aspect-ratio:16/9; display:block; border:none; }&#xA;.video-info { padding:18px 20px; }&#xA;.video-info h4 { margin:0 0 6px; color:#2c3e50; font-size:16px; }&#xA;.video-meta { font-size:13px; color:#888; margin-bottom:10px; }&#xA;.video-desc { font-size:13px; color:#555; line-height:1.6; margin-bottom:12px; }&#xA;.progress-bar-wrap { background:#f0f0f0; border-radius:10px; height:8px; overflow:hidden; }&#xA;.progress-bar-fill { height:100%; background:linear-gradient(90deg,#7a9e7e,#5a8e5e); border-radius:10px; transition:width 0.5s ease; width:0%; }&#xA;.watched-badge { background:#7a9e7e; color:#fff; font-size:11px; padding:3px 10px; border-radius:20px; display:inline-block; }&#xA;.not-watched { background:#ccc; color:#666; font-size:11px; padding:3px 10px; border-radius:20px; display:inline-block; }&#xA;.stats-summary { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px; margin-bottom:36px; }&#xA;.stats-card { background:linear-gradient(135deg,#e07b54,#c4623a); color:#fff; border-radius:12px; padding:22px 16px; text-align:center; }&#xA;.stats-card.dark { background:linear-gradient(135deg,#2c3e50,#34495e); }&#xA;.stats-card h2 { font-size:32px; margin:0; font-weight:700; }&#xA;.stats-card p { margin:4px 0 0; opacity:0.85; font-size:13px; }&#xA;&lt;/style&gt;&#xA;&lt;div class=&#34;container&#34;&gt;&#xA;  &lt;!-- 頁首 --&gt;&#xA;  &lt;div class=&#34;page-header&#34;&gt;&#xA;    &lt;div class=&#34;container&#34;&gt;&#xA;      &lt;h1&gt;👥 員工專區&lt;/h1&gt;&#xA;      &lt;p&gt;開會通知 &amp; 教育訓練課程&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>員工登入</title>
+      <link>http://localhost:1313/staff/login/</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0800</pubDate>
+      <guid>http://localhost:1313/staff/login/</guid>
+      <description>&lt;link rel=&#34;preconnect&#34; href=&#34;https://fonts.googleapis.com&#34;&gt;&#xA;&lt;link href=&#34;https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap&#34; rel=&#34;stylesheet&#34;&gt;&#xA;&lt;style&gt;&#xA;body { background: #f5f5f5; font-family: &#39;Noto Sans TC&#39;, &#39;Helvetica Neue&#39;, sans-serif; }&#xA;.staff-logo { text-align: center; margin-bottom: 24px; }&#xA;.staff-logo h2 { margin: 12px 0 4px; color: #2c3e50; font-size: 22px; font-weight: 700; }&#xA;.staff-logo p { color: #888; font-size: 13px; margin: 0; }&#xA;&lt;/style&gt;&#xA;&lt;div id=&#34;login-section&#34;&gt;&#xA;  &lt;div class=&#34;staff-login-wrapper&#34;&gt;&#xA;    &lt;div class=&#34;staff-logo&#34;&gt;&#xA;      &lt;h2&gt;👥 員工專區&lt;/h2&gt;&#xA;      &lt;p&gt;請輸入員工密碼以繼續&lt;/p&gt;</description>
+    </item>
     <item>
       <title>基礎生命支持（BLS）與自動體外心臟去顫器（AED）</title>
-      <link>https://truelovetn.github.io/blog/241205-blsandaedintro1222/</link>
+      <link>http://localhost:1313/blog/241205-blsandaedintro1222/</link>
       <pubDate>Thu, 05 Dec 2024 22:22:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/241205-blsandaedintro1222/</guid>
+      <guid>http://localhost:1313/blog/241205-blsandaedintro1222/</guid>
       <description>&lt;p&gt;為什麼取得急救認證資格很重要？&#xA;隨著現代社會壓力增大，心血管疾病及突發心臟病的發生率持續上升，急救知識的普及變得格外重要。無論是長照人員，或是一般民眾，在意外發生的黃金幾分鐘內能夠採取正確的急救措施，可能成為改變生命的重要轉捩點。&lt;/p&gt;</description>
     </item>
     <item>
       <title>居家服務有哪些</title>
-      <link>https://truelovetn.github.io/hclist/</link>
+      <link>http://localhost:1313/hclist/</link>
       <pubDate>Sun, 01 Dec 2024 22:22:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/hclist/</guid>
+      <guid>http://localhost:1313/hclist/</guid>
       <description>&lt;h1 id=&#34;居家服務有哪些&#34;&gt;居家服務有哪些&lt;/h1&gt;&#xA;&lt;h3 id=&#34;由合格照顧服務員定期至家中提供日常生活及身體照顧等服務以紓解照顧者照顧上的壓力&#34;&gt;由合格照顧服務員定期至家中提供日常生活及身體照顧等服務，以紓解照顧者照顧上的壓力。&lt;/h3&gt;&#xA;&lt;h3 id=&#34;本服務可與日間照顧家庭托顧合併使用照顧服務補助併計不得超過最高補助上限&#34;&gt;本服務可與日間照顧、家庭托顧合併使用，照顧服務補助併計不得超過最高補助上限&lt;/h3&gt;&#xA;&lt;h1 id=&#34;服務對象&#34;&gt;服務對象&lt;/h1&gt;&#xA;&lt;h4 id=&#34;有此情形之一者不得申請1聘僱外籍家庭看護工2領有政府提供之特別照顧津貼補助者&#34;&gt;《有此情形之一者不得申請:1.聘僱外籍家庭看護工2.領有政府提供之特別照顧津貼補助者》&lt;/h4&gt;&#xA;&lt;h4 id=&#34;實際居住於本市並經本中心照顧管理專員或社區整合型服務中心評估有下列情形&#34;&gt;※實際居住於本市，並經本中心照顧管理專員或社區整合型服務中心評估有下列情形:&lt;/h4&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;65歲以上之失能老人。&lt;/li&gt;&#xA;&lt;li&gt;55歲以上之失能原住民。&lt;/li&gt;&#xA;&lt;li&gt;50歲以上失智症患者。&lt;/li&gt;&#xA;&lt;li&gt;失能身心障礙者。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;服務內容&#34;&gt;服務內容：&lt;/h1&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;基本身體清潔&lt;/li&gt;&#xA;&lt;li&gt;基本日常照顧&lt;/li&gt;&#xA;&lt;li&gt;測量生命徵象&lt;/li&gt;&#xA;&lt;li&gt;協助進食或管灌餵食&lt;/li&gt;&#xA;&lt;li&gt;餐食照顧&lt;/li&gt;&#xA;&lt;li&gt;協助沐浴及洗頭&lt;/li&gt;&#xA;&lt;li&gt;足部照護&lt;/li&gt;&#xA;&lt;li&gt;到宅沐浴車服務&lt;/li&gt;&#xA;&lt;li&gt;翻身拍背&lt;/li&gt;&#xA;&lt;li&gt;肢體關節活動&lt;/li&gt;&#xA;&lt;li&gt;協助上(下)樓梯&lt;/li&gt;&#xA;&lt;li&gt;陪同外出&lt;/li&gt;&#xA;&lt;li&gt;陪同就醫&lt;/li&gt;&#xA;&lt;li&gt;家務協助&lt;/li&gt;&#xA;&lt;li&gt;代購或代領或代送服務&lt;/li&gt;&#xA;&lt;li&gt;協助執行輔助性醫療&lt;/li&gt;&#xA;&lt;li&gt;安全看視&lt;/li&gt;&#xA;&lt;li&gt;陪伴服務&lt;/li&gt;&#xA;&lt;li&gt;巡視服務&lt;/li&gt;&#xA;&lt;li&gt;協助洗頭&lt;/li&gt;&#xA;&lt;li&gt;協助排泄&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h1 id=&#34;收費補助標準&#34;&gt;收費補助標準&lt;/h1&gt;&#xA;&lt;h3 id=&#34;居家服務費用收費補助標準依長期照顧給付及支付基準&#34;&gt;居家服務費用，收費補助標準，依長期照顧給付及支付基準&lt;/h3&gt;&#xA;&lt;h5 id=&#34;您在煩惱沒有人照顧長輩嗎還不清楚居家服務可以做哪些事情嗎&#34;&gt;您在煩惱沒有人照顧長輩嗎？還不清楚居家服務可以做哪些事情嗎？&lt;/h5&gt;&#xA;&lt;p&gt;沒問題！昶青崇愛都樂意為您解答唷&lt;/p&gt;</description>
     </item>
     <item>
       <title>崇愛居家長照機構正式上線</title>
-      <link>https://truelovetn.github.io/blog/241129-grandopen1201/</link>
+      <link>http://localhost:1313/blog/241129-grandopen1201/</link>
       <pubDate>Fri, 29 Nov 2024 14:14:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/241129-grandopen1201/</guid>
+      <guid>http://localhost:1313/blog/241129-grandopen1201/</guid>
       <description>&lt;p&gt;籌備許久的我們，要跟大家正式見面啦!&lt;/p&gt;</description>
     </item>
     <item>
       <title>Welcome to 崇愛居家</title>
-      <link>https://truelovetn.github.io/blog/241114-hello/</link>
+      <link>http://localhost:1313/blog/241114-hello/</link>
       <pubDate>Thu, 14 Nov 2024 13:39:23 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/241114-hello/</guid>
+      <guid>http://localhost:1313/blog/241114-hello/</guid>
       <description>&lt;p&gt;本機構致力於為需要長期照顧的長者與家庭提供專業、貼心的居家服務。我們提供一系列量身訂製的服務方案，致力於改善長者的生活品質，並為家庭成員提供實質的支援與協助。無論是長期居家照護，還是短期喘息照顧，我們都能提供適切的服務，讓您與您的家人更有安心感。&lt;/p&gt;</description>
     </item>
     <item>
       <title>還在把醫院復健跟居家復能混為一談嗎</title>
-      <link>https://truelovetn.github.io/blog/241116-ptservice/</link>
+      <link>http://localhost:1313/blog/241116-ptservice/</link>
       <pubDate>Thu, 14 Nov 2024 13:39:23 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/241116-ptservice/</guid>
+      <guid>http://localhost:1313/blog/241116-ptservice/</guid>
       <description>&lt;p&gt;&#xA;&lt;img &#xA;  src=&#34;../../img/banners/banner-pt.png&#34; &#xA;  alt=&#34;測試訊息&#34; &#xA;  style=&#34;&#xA;    width: auto;&#xA;    height: 200px;&#xA;    max-width: 100%;&#xA;    display: block;&#xA;    margin: auto;&#xA;  &#34;&#xA;/&gt;&#xA;&#xA;還在把醫院復健跟居家復能混為一談嗎？&#xA;來看看我們的居家復能師能為您做些什麼&lt;/p&gt;</description>
     </item>
     <item>
       <title>崇愛受捐贈公告</title>
-      <link>https://truelovetn.github.io/blog/241101-doncre/</link>
+      <link>http://localhost:1313/blog/241101-doncre/</link>
       <pubDate>Fri, 01 Nov 2024 11:01:11 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/241101-doncre/</guid>
+      <guid>http://localhost:1313/blog/241101-doncre/</guid>
       <description>&lt;p&gt;&#xA;&lt;img &#xA;  src=&#34;../../img/banners/banner-2.jpg&#34; &#xA;  alt=&#34;崇愛居家&#34; &#xA;  style=&#34;&#xA;    width: auto;&#xA;    height: 200px;&#xA;    max-width: 100%;&#xA;    display: block;&#xA;    margin: auto;&#xA;  &#34;&#xA;/&gt;&#xA;&#xA;崇愛居家長照機構全體同仁向您們致以最誠摯的感謝與敬意！&lt;/p&gt;</description>
     </item>
     <item>
       <title>Contact</title>
-      <link>https://truelovetn.github.io/contact/</link>
+      <link>http://localhost:1313/contact/</link>
       <pubDate>Mon, 30 Sep 2024 22:22:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/contact/</guid>
-      <description>&lt;h1 id=&#34;we-are-here-to-help-you&#34;&gt;We are here to help you&lt;/h1&gt;&#xA;&lt;p&gt;您在煩惱沒有人照顧長輩嗎？還不清楚居家服務可以做哪些事情嗎？&#xA;沒問題！昶青都樂意為您解答唷&lt;/p&gt;&#xA;&lt;p&gt;長照疑難雜症免煩惱 ，一通電話辦好好!昶青長照策略聯盟：0911-096-151 吳主任&lt;/p&gt;</description>
+      <guid>http://localhost:1313/contact/</guid>
+      <description>&lt;h1 id=&#34;we-are-here-to-help-you&#34;&gt;We are here to help you&lt;/h1&gt;&#xA;&lt;p&gt;您在煩惱沒有人照顧長輩嗎？還不清楚居家服務可以做哪些事情嗎？&#xA;沒問題！歡迎致電或加入LINE與我們聯繫！&lt;/p&gt;&#xA;&lt;h2 id=&#34;聯絡資訊&#34;&gt;聯絡資訊&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;項目&lt;/th&gt;&#xA;          &lt;th&gt;內容&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;電話&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;06-2677109&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;LINE&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://lin.ee/4xc8NDv&#34; target=&#34;_blank&#34;&gt;加入LINE好友&lt;/a&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;Email&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;mailto:truelovetainan@gmail.com&#34;&gt;truelovetainan@gmail.com&lt;/a&gt;&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;strong&gt;地址&lt;/strong&gt;&lt;/td&gt;&#xA;          &lt;td&gt;臺南市東區東門路三段253號11樓之3(1110室)&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;span style=&#34;display:block; margin-top:16px; padding:16px; background:#f8f4ef; border-radius:8px; border-left:4px solid #e07b54; font-size:15px;&#34;&gt;&#xA;  長照疑難雜症免煩惱，一通電話辦好好！&lt;br&gt;&#xA;  昶青長照策略聯盟：0911-096-151 吳主任&#xA;&lt;/span&gt;&#xA;&lt;h2 id=&#34;服務時間&#34;&gt;服務時間&lt;/h2&gt;&#xA;&lt;p&gt;週一至週五　上午 9:00 - 下午 6:00&lt;/p&gt;</description>
     </item>
     <item>
       <title>FAQ</title>
-      <link>https://truelovetn.github.io/faq/</link>
+      <link>http://localhost:1313/faq/</link>
       <pubDate>Mon, 30 Sep 2024 22:22:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/faq/</guid>
+      <guid>http://localhost:1313/faq/</guid>
       <description>&lt;p&gt;常見長照問題諮詢&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-什麼對象符合長照補助資格&#34;&gt;1. 什麼對象符合長照補助資格?&lt;/h2&gt;&#xA;&lt;p&gt;六十五歲以上失能老人。&#xA;五十五歲以上失能原住民。&#xA;五十歲以上失智症者。&#xA;失能身心障礙者。&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-長照服務怎麼申請&#34;&gt;2. 長照服務怎麼申請?&lt;/h2&gt;&#xA;&lt;p&gt;長照疑難雜症免煩惱 ，一通電話辦好好!昶青長照策略聯盟：0911-096-151 吳主任&lt;/p&gt;&#xA;&lt;p&gt;或&lt;/p&gt;&#xA;&lt;p&gt;長照服務專線：1966&lt;/p&gt;&#xA;&lt;h2 id=&#34;3-有外勞可以申請長照服務嗎&#34;&gt;3. 有外勞可以申請長照服務嗎?&lt;/h2&gt;&#xA;&lt;p&gt;可以!&lt;/p&gt;&#xA;&lt;p&gt;可全自費使用居家照顧服務亦可使用補助的喘息服務喘息時間一年有84或126小時可以使用可以在外勞休假時短暫替代家中的照顧&lt;/p&gt;&#xA;&lt;h2 id=&#34;4-居家服務可以做什麼&#34;&gt;4. 居家服務可以做什麼?&lt;/h2&gt;&#xA;&lt;p&gt;身體清潔&#xA;餐食照顧&#xA;陪伴服務&#xA;日常照顧&#xA;家務協助&#xA;喘息服務&lt;/p&gt;</description>
     </item>
     <item>
       <title>服務項目基準表</title>
-      <link>https://truelovetn.github.io/servlist/</link>
+      <link>http://localhost:1313/servlist/</link>
       <pubDate>Mon, 30 Sep 2024 22:22:00 +0800</pubDate>
-      <guid>https://truelovetn.github.io/servlist/</guid>
+      <guid>http://localhost:1313/servlist/</guid>
       <description>&lt;h1 id=&#34;如何收費&#34;&gt;如何收費&lt;/h1&gt;&#xA;&lt;p&gt;查看下列圖表&lt;/p&gt;&#xA;&lt;p&gt;&#xA;&lt;img &#xA;  src=&#34;../img/servlist_1.png&#34; &#xA;  alt=&#34;收費基準表p1&#34; &#xA;  style=&#34;&#xA;    width: auto;&#xA;    height: auto;&#xA;    max-width: 100%;&#xA;    display: block;&#xA;    margin: auto;&#xA;  &#34;&#xA;/&gt;&#xA;&#xA;&#xA;&lt;img &#xA;  src=&#34;../img/servlist_2.png&#34; &#xA;  alt=&#34;收費基準表p2&#34; &#xA;  style=&#34;&#xA;    width: auto;&#xA;    height: auto;&#xA;    max-width: 100%;&#xA;    display: block;&#xA;    margin: auto;&#xA;  &#34;&#xA;/&gt;&#xA;&lt;/p&gt;</description>
     </item>
     <item>
       <title>合作夥伴開課宣傳</title>
-      <link>https://truelovetn.github.io/blog/200101-classannounce/</link>
+      <link>http://localhost:1313/blog/200101-classannounce/</link>
       <pubDate>Thu, 01 Aug 2024 01:01:01 +0800</pubDate>
-      <guid>https://truelovetn.github.io/blog/200101-classannounce/</guid>
+      <guid>http://localhost:1313/blog/200101-classannounce/</guid>
       <description>&lt;p&gt;同學們，上課囉！&#xA;最近有哪些有趣的課程呢，快點進文章來看看&lt;/p&gt;</description>
     </item>
   </channel>

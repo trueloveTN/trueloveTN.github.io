@@ -1,13 +1,163 @@
-.box-image-text .image {
-  min-height: 190px;
-  max-height: 190px;
+/* =============================================
+   TrueLoveTN Warm Brand Overrides
+   暖色長照品牌形象覆蓋
+   ============================================= */
+
+/* 品牌主色：暖橘色調 */
+:root {
+  --brand-warm: #e07b54;
+  --brand-warm-dark: #c4623a;
+  --brand-cream: #fdf6ee;
+  --brand-sage: #7a9e7e;
 }
 
-.box-image-text .image img {
-  max-height: 190px;
-  margin: auto;
+/* 導航列暖橘漸層背景 */
+#navbar {
+  background: linear-gradient(135deg, #e07b54 0%, #c4623a 100%) !important;
+  border-bottom: 3px solid #f0a882;
 }
 
-.box-simple {
-  min-height: 230px;
+/* 頂部bar深色背景 */
+#topbar {
+  background-color: #2c3e50 !important;
+}
+
+/* 功能區塊 hover */
+.box-image:hover,
+.box-simple:hover {
+  border-color: var(--brand-warm);
+  box-shadow: 0 4px 20px rgba(224, 123, 84, 0.25);
+}
+
+/* 主要按鈕 */
+.btn.btn-template-main {
+  background-color: #e07b54 !important;
+  border-color: #e07b54 !important;
+}
+.btn.btn-template-main:hover {
+  background-color: #c4623a !important;
+  border-color: #c4623a !important;
+}
+
+/* 連結 */
+a { color: #c4623a; }
+a:hover { color: #e07b54; }
+
+/* 分頁 */
+.pagination > .active > a,
+.pagination > .active > span {
+  background-color: #e07b54 !important;
+  border-color: #e07b54 !important;
+}
+
+/* Carousel 字幕 */
+#homepage-carousel .carousel-caption {
+  background: rgba(196, 98, 58, 0.78);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Footer */
+#footer { background-color: #2c3e50; }
+#copyright { background-color: #1a252f; }
+
+/* 服務卡片 */
+.service-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-radius: 8px;
+  border-top: 3px solid #e07b54;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+/* ===== 員工專區 ===== */
+.staff-login-wrapper {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  border-top: 4px solid #e07b54;
+}
+
+.staff-login-wrapper .form-control:focus {
+  border-color: #e07b54;
+  box-shadow: 0 0 0 3px rgba(224, 123, 84, 0.15);
+}
+
+.staff-login-wrapper .btn {
+  background-color: #e07b54;
+  border-color: #e07b54;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 24px;
+  width: 100%;
+}
+.staff-login-wrapper .btn:hover {
+  background-color: #c4623a;
+  border-color: #c4623a;
+}
+
+.login-error {
+  background-color: #fdf2f2;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  color: #c44;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.video-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  border: 1px solid #eee;
+  transition: box-shadow 0.2s;
+}
+.video-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+.video-card .card-body { padding: 20px; }
+.video-card h4 { color: #2c3e50; font-size: 16px; margin-bottom: 8px; }
+.video-card .meta { font-size: 13px; color: #888; margin-bottom: 12px; }
+.badge-watched {
+  background: #7a9e7e;
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.stats-card {
+  background: linear-gradient(135deg, #e07b54, #c4623a);
+  color: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.stats-card h2 { font-size: 36px; margin: 0; font-weight: 700; }
+.stats-card p { margin: 4px 0 0; opacity: 0.9; font-size: 14px; }
+
+.staff-dashboard-header {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: #fff;
+  padding: 40px 0;
+  margin-bottom: 40px;
+}
+.staff-dashboard-header h1 { margin: 0; font-size: 28px; font-weight: 600; }
+
+.password-hint {
+  background: #f8f4ef;
+  border: 1px solid #e0cfc0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #666;
+  margin-top: 16px;
+  text-align: center;
 }
