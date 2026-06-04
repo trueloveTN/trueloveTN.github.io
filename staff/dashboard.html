@@ -219,8 +219,8 @@ var saveTimers   = {};     // debounced save timers
 function fetchCourses(cb) {
   // 課程也寫在本地，確保即使 GAS 延遲也能正常顯示
   courses = [
-    { id: "k8wKvRatFDY", title: "⚠️ 職業安全衛生教育訓練",   duration: 8  },
-    { id: "UAMkCMokMIY", title: "🩺 居家服務感染管制",         duration: 10 },
+    { id: "k8wKvRatFDY", title: "⚠️ 職業安全衛生教育訓練",   duration: 3.5 },
+    { id: "UAMkCMokMIY", title: "🩺 居家服務感染控制",         duration: 4.5 },
     { id: "q5rgl6tfSvM", title: "⚠️ 居家服務 意外事件處理",                           duration: 6  },
   ];
   TOTAL = courses.length; // 自動修正總課數
@@ -331,7 +331,7 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
     var dur = course.duration * 60;
     prog.watched = Math.min(elapsed, dur);
     var pct = Math.min(100, Math.round((prog.watched / dur) * 100));
-    prog.done = prog.watched >= dur * 0.8; // 80% 視為完成
+    prog.done = prog.watched >= dur * 0.9; // 90% 視為完成
     var fill = document.getElementById("pf-" + vid);
     var pctEl = document.getElementById("pct-" + vid);
     if (fill) fill.style.width = pct + "%";
@@ -567,6 +567,13 @@ function staffLogout() {
   localStorage.removeItem("staff_ok");
   localStorage.removeItem("staff_idCard");
   localStorage.removeItem("staff_name");
+  // 清除所有訓練紀錄
+  for (var i = localStorage.length - 1; i >= 0; i--) {
+    var k = localStorage.key(i);
+    if (k && k.indexOf("tltn_rec_") === 0) {
+      localStorage.removeItem(k);
+    }
+  }
   window.location.href = "login.html";
 }
 
