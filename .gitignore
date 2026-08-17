@@ -1,0 +1,8 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# 其他系統生成檔
+*.swp
+*.tmp
+Thumbs.db
