@@ -177,6 +177,7 @@
 var GAS_URL = "https://script.google.com/macros/s/AKfycbzsfCeZ6XbKUaLl_R0wwqM9snrXSBWrJIZpr8SKVPqhxw4xc1zvGMUt3ogrbKCWjmcC/exec";
 var idCard  = localStorage.getItem("staff_idCard");
 var TOTAL   = 3;
+var passMinutes = {}
 
 // ── 權限檢查 ──
 // 從 URL 參數恢復 session（如果有的話）
@@ -219,11 +220,19 @@ var saveTimers   = {};     // debounced save timers
 function fetchCourses(cb) {
   // 課程也寫在本地，確保即使 GAS 延遲也能正常顯示
   courses = [
-    { id: "k8wKvRatFDY", title: "⚠️ 職業安全衛生教育訓練",   duration: 210 },
-    { id: "UAMkCMokMIY", title: "🩺 居家服務感染控制",         duration: 270 },
-    { id: "q5rgl6tfSvM", title: "⚠️ 居家服務 意外事件處理",                           duration: 60 },
+    { id: "AOwC6qQVmvo", title: "⚠️ 職業安全衛生教育訓練",   duration: 185 },
+    { id: "IVbYrbcB4C4", title: "🩺 居家服務感染控制 上",   duration: 161 },
+    { id: "0VPBY33uJKk", title: "🩺 居家服務感染控制 下",    duration: 99 },
+    { id: "e3Y4Jfe4U6I", title: "⚠️ 居家服務 意外事件處理", duration: 103 },
   ];
   TOTAL = courses.length; // 自動修正總課數
+  // 必要觀看分鐘數（用於完成判定）
+  passMinutes = {
+    "AOwC6qQVmvo": 180,
+    "IVbYrbcB4C4": 0, // 會在儲存時依照群合計算
+    "0VPBY33uJKk": 0,
+    "e3Y4Jfe4U6I": 60
+  };
   cb();
 }
 
@@ -331,7 +340,8 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
     var dur = course.duration * 60;
     prog.watched = Math.min(elapsed, dur);
     var pct = Math.min(100, Math.round((prog.watched / dur) * 100));
-    prog.done = prog.watched >= dur * 0.9; // 90% 視為完成
+    var required = passMinutes[vid] && passMinutes[vid] > 0 ? passMinutes[vid] : dur * 0.9;
+    prog.done = prog.watched >= required;
     var fill = document.getElementById("pf-" + vid);
     var pctEl = document.getElementById("pct-" + vid);
     if (fill) fill.style.width = pct + "%";
@@ -456,6 +466,26 @@ function saveNow(vid) {
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
   allRec[vid] = { minutes: minutes, done: done, updatedAt: new Date().toISOString() };
   localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
+  // 感染控制群組邏輯：如果是感染控制影片，檢查兩部影片總觀看分鐘是否 >= 240
+  if (["IVbYrbcB4C4","0VPBY33uJKk"].includes(vid)) {
+    var infectionIds = ["IVbYrbcB4C4","0VPBY33uJKk"];
+    var sumWatched = 0;
+    infectionIds.forEach(function(id){
+      var rec = localProgress[id];
+      sumWatched += rec ? rec.watched : 0;
+    });
+    if (sumWatched >= 240 * 60) { // 240 minutes in seconds
+      infectionIds.forEach(function(id){
+        if (localProgress[id]) {
+          localProgress[id].done = true;
+          // update localStorage entry for this id as well
+          var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
+          allRec[id] = { minutes: Math.round(localProgress[id].watched/60), done: true, updatedAt: new Date().toISOString() };
+        }
+      });
+      localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
+    }
+  }
 
   // 寫入 GAS（GET 參數，避開 preflight CORS）
   var staffName = localStorage.getItem("staff_name") || "";
