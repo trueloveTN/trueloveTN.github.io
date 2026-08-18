@@ -1,6 +1,6 @@
 // =============================================
 //  崇愛居家員工教育訓練系統 - GAS 後端
-//  A=姓名, B=身份證, C=觀看日期, D=影片ID, E=課程名稱, F=觀看分鐘, G=是否完成, H=備註
+//  A=姓名, B=身份證, C=觀看日期, D=影片ID, E=課程名稱, F=觀看分鐘, G=是否完成, H=備註, I=目前觀看秒數
 // =============================================
 
 var SPREADSHEET_ID = "1BLxAXErHDbvR-A-RysJYSF6tkcPNCg1CYXXAXWTwNjE";
@@ -33,7 +33,7 @@ function doGetSaveWatch(e) {
   var sheet = ss.getSheetByName(SHEET_RECORDS);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_RECORDS);
-    sheet.getRange(1,1,1,8).setValues([["姓名","身份證","觀看日期","影片ID","課程名稱","觀看分鐘","是否完成","備註"]]);
+    sheet.getRange(1,1,1,9).setValues([["姓名","身份證","觀看日期","影片ID","課程名稱","觀看分鐘","是否完成","備註","目前觀看秒數"]]);
   }
 
   var idCard   = (e.parameter.idCard   || "").toUpperCase().trim();
@@ -42,6 +42,7 @@ function doGetSaveWatch(e) {
   var minutes  = parseInt(e.parameter.minutes, 10) || 0;
   var done     = e.parameter.done === "true";
   var note     = e.parameter.note || "";
+  var currentTime = parseInt(e.parameter.currentTime) || 0;
 
   // 查課程標題
   var title = videoId;
@@ -55,13 +56,13 @@ function doGetSaveWatch(e) {
     if ((data[i][1]||"").toString().toUpperCase().trim() === idCard &&
         (data[i][3]||"").toString().trim() === videoId) {
       // 找到同身份證+同影片→更新 C~H 欄
-      sheet.getRange(i+1,3,1,6).setValues([[new Date(), videoId, title, minutes, done, note]]);
+      sheet.getRange(i+1,3,1,7).setValues([[new Date(), videoId, title, minutes, done, note, currentTime]]);
       if (!data[i][0]) sheet.getRange(i+1,1).setValue(name);  // 若姓名空白才補
       return json({ ok: true, updated: true, name: name });
     }
   }
   // 沒找到→新增一列
-  sheet.appendRow([name, idCard, new Date(), videoId, title, minutes, done, note]);
+    sheet.appendRow([name, idCard, new Date(), videoId, title, minutes, done, note, currentTime]);
   return json({ ok: true, updated: false, name: name });
 }
 
@@ -98,6 +99,7 @@ function doPostSaveWatch(p) {
   var minutes = parseInt(p.minutes) || 0;
   var done    = p.done === true || p.done === "true";
   var note    = p.note || "";
+  var currentTime = parseInt(p.currentTime) || 0;
 
   var title = videoId;
   COURSES.forEach(function(c){ if(c.id === videoId) title = c.title; });
@@ -107,12 +109,12 @@ function doPostSaveWatch(p) {
   for (var i = 1; i < data.length; i++) {
     if ((data[i][1]||"").toString().toUpperCase().trim() === idCard &&
         (data[i][3]||"").toString().trim() === videoId) {
-      sheet.getRange(i+1,3,1,6).setValues([[new Date(), videoId, title, minutes, done, note]]);
+      sheet.getRange(i+1,3,1,7).setValues([[new Date(), videoId, title, minutes, done, note, currentTime]]);
       if (!data[i][0]) sheet.getRange(i+1,1).setValue(name);
       return json({ ok: true, updated: true, name: name });
     }
   }
-  sheet.appendRow([name, idCard, new Date(), videoId, title, minutes, done, note]);
+    sheet.appendRow([name, idCard, new Date(), videoId, title, minutes, done, note, currentTime]);
   return json({ ok: true, updated: false, name: name });
 }
 
@@ -176,6 +178,7 @@ function getRecords(e) {
         title:   data[i][4] || "",
         minutes: data[i][5] || 0,
         done:    data[i][6] || false
+        currentTime: data[i][7] || 0,
       });
     }
   }
