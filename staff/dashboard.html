@@ -289,9 +289,9 @@ function buildVideoCards(records) {
   courses.forEach(function(c) {
     var rec = records.find(function(r){ return r.videoId === c.id; }) || {};
     localProgress[c.id] = {
-      watched: (rec.minutes || 0) * 60,
+      watched: rec.currentTime || 0,
       done: rec.done === true || rec.done === "完成" || rec.done === "true",
-      baseWatched: (rec.minutes || 0) * 60,
+      baseWatched: rec.currentTime || 0,
       startedAt: null,
       lastTime: null,
       currentTime: rec.currentTime || 0
@@ -447,6 +447,9 @@ function bindYTPlayers() {
               console.log("⏸️ 暫停/結束，凍結計時器：" + thisVid);
               stopSimpleTracking(thisVid);
             }
+          },
+          'onReady': function(event) {
+            event.target.seekTo(Math.floor(localProgress[currentCourse.id].currentTime || 0), true);
           }
         }
       });
