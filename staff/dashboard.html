@@ -56,7 +56,7 @@
     .notice-item .meta { font-size: 12px; color: #aaa; margin-bottom: 8px; }
     .notice-tag { display: inline-block; background: #fdf0ea; color: #c4623a; font-size: 11px; padding: 2px 8px; border-radius: 10px; margin-left: 8px; }
 
-    /* 影片卡片 (已加入手機版完美自適應) */
+    /* 影片卡片 */
     .video-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 28px; border: 1px solid #eee; }
     
     .video-embed-wrap { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
@@ -92,7 +92,7 @@
       pointer-events: none;
       opacity: 0.5;
     }
-      </style>
+  </style>
 </head>
 <body>
 
@@ -152,7 +152,6 @@
     <p style="font-size:14px; color:#555; margin-top:8px;">出席人員：全體居服員　｜　此次開會，如有任何問題或想討論的議題，皆可提前準備好，於開會中提出討論。</p>
   </div>
 
-
   <!-- 教育訓練 -->
   <h2 class="section-title" id="training">🎓 教育訓練影片</h2>
   <p style="color:#888; font-size:13px; margin-bottom:20px;">
@@ -175,17 +174,14 @@
 <!-- Toast 通知 -->
 <div class="toast" id="toast"></div>
 
-
-
 <script>
 // ── 系統設定 ──
 var GAS_URL = "https://script.google.com/macros/s/AKfycbzsfCeZ6XbKUaLl_R0wwqM9snrXSBWrJIZpr8SKVPqhxw4xc1zvGMUt3ogrbKCWjmcC/exec";
 var idCard  = localStorage.getItem("staff_idCard");
 var TOTAL   = 3;
-var passMinutes = {}
+var passMinutes = {};
 
 // ── 權限檢查 ──
-// 從 URL 參數恢復 session（如果有的話）
 var urlParams = new URLSearchParams(window.location.search);
 var paramIdCard = urlParams.get("idCard");
 if (paramIdCard && !localStorage.getItem("staff_ok")) {
@@ -204,6 +200,7 @@ var ytTimers     = {};     // track timers
 var localProgress= {};     // { videoId: { watched, done, baseWatched, startedAt } }
 var courses      = [];     // [{ id, title, duration }]
 var saveTimers   = {};     // debounced save timers
+var ytApiLoaded  = false;
 
 // =============================================
 //  啟動
@@ -223,18 +220,16 @@ var saveTimers   = {};     // debounced save timers
 //  從 GAS 取得課程列表
 // =============================================
 function fetchCourses(cb) {
-  // 課程也寫在本地，確保即使 GAS 延遲也能正常顯示
   courses = [
     { id: "AOwC6qQVmvo", title: "⚠️ 職業安全衛生教育訓練",   duration: 185 },
     { id: "IVbYrbcB4C4", title: "🩺 居家服務感染控制 上",   duration: 161 },
     { id: "0VPBY33uJKk", title: "🩺 居家服務感染控制 下",    duration: 99 },
     { id: "e3Y4Jfe4U6I", title: "⚠️ 居家服務 意外事件處理", duration: 103 },
   ];
-  TOTAL = courses.length; // 自動修正總課數
-  // 必要觀看分鐘數（用於完成判定）
+  TOTAL = courses.length;
   passMinutes = {
     "AOwC6qQVmvo": 180,
-    "IVbYrbcB4C4": 0, // 會在儲存時依照群合計算
+    "IVbYrbcB4C4": 0,
     "0VPBY33uJKk": 0,
     "e3Y4Jfe4U6I": 60
   };
@@ -245,7 +240,6 @@ function fetchCourses(cb) {
 //  從 GAS 讀取觀看紀錄
 // =============================================
 function fetchRecords(cb) {
-  // 從 GAS 讀取雲端紀錄
   fetch(GAS_URL + "?action=getRecords&idCard=" + encodeURIComponent(idCard))
     .then(function(resp) {
       if (!resp.ok) throw new Error("HTTP " + resp.status);
@@ -273,11 +267,6 @@ function fetchRecords(cb) {
       cb(recordsArr);
     });
 }
-
-// =============================================
-//  將 GAS 回應轉成 records 格式（no-cors workaround）
-// =============================================
-// no-cors 模式下 GAS 沒有回應內容，所以改用 localStorage + batch save
 
 // =============================================
 //  建立影片卡片
@@ -309,10 +298,10 @@ function buildVideoCards(records) {
     card.dataset.id   = course.id;
     card.dataset.dur  = course.duration * 60;
 
+    // 修正：iframe 不預載 src，完全交給 YouTube JS API 進行初始化
     card.innerHTML =
       '<div class="video-embed-wrap">' +
-        '<iframe src="https://www.youtube.com/embed/' + course.id + '?enablejsapi=1&rel=0&origin=' + window.location.origin + '&autoplay=0" ' +
-        'id="yt-' + course.id + '" width="100%" height="360" frameborder="0" allowfullscreen></iframe>' +
+        '<iframe id="yt-' + course.id + '" width="100%" height="360" frameborder="0" allowfullscreen></iframe>' +
       '</div>' +
       '<div class="video-body">' +
         '<h4>' + course.title + '</h4>' +
@@ -332,32 +321,31 @@ function buildVideoCards(records) {
     container.appendChild(card);
   });
 
-  // 【核心修正】等影片卡片全部畫進網頁後，才動態呼叫 YouTube API
   if (!window.ytApiLoaded) {
     var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api"; // 使用官方動態腳本網址
+    tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   } else {
-    bindYTPlayers(); // 如果重新整理畫面，直接重新綁定
+    bindYTPlayers();
   }
 }
 
 // =============================================
-//  純計時備援機制 (保持不變)
+//  純計時備援機制
 // =============================================
-var ytApiLoaded = false;
-function startSimpleTracking(vid) { /*...同原程式碼...*/ 
+function startSimpleTracking(vid) { 
   var prog = localProgress[vid];
   var course = courses.find(function(c){ return c.id === vid; });
   if (!prog || !course || ytTimers[vid]) return;
-  // Disable other videos UI
+  
   var allIframes = document.querySelectorAll('.video-embed-wrap iframe');
   allIframes.forEach(function(ifr) {
     if (ifr.id !== 'yt-' + vid) {
       ifr.classList.add('video-disabled');
     }
   });
+
   prog.startedAt = Date.now();
   ytTimers[vid] = setInterval(function() {
     if (document.hidden) return;
@@ -378,13 +366,15 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
     prog.startedAt = Date.now();
   }, 5000);
 }
-function stopSimpleTracking(vid) { /*...同原程式碼...*/ 
+
+function stopSimpleTracking(vid) { 
   if (ytTimers[vid]) { clearInterval(ytTimers[vid]); delete ytTimers[vid]; }
-  // Enable other videos UI
+  
   var allIframes = document.querySelectorAll('.video-embed-wrap iframe');
   allIframes.forEach(function(ifr) {
     ifr.classList.remove('video-disabled');
   });
+
   var prog = localProgress[vid];
   var course = courses.find(function(c){ return c.id === vid; });
   if (prog && prog.startedAt && course) {
@@ -393,27 +383,23 @@ function stopSimpleTracking(vid) { /*...同原程式碼...*/
     prog.baseWatched = prog.watched;
     prog.startedAt = null;
   }
-  prog.currentTime = prog.watched;
+  if (prog) prog.currentTime = prog.watched;
   saveNow(vid);
 }
-function finishSimpleTracking(vid) { /*...同原程式碼...*/ }
-function setupSimpleTracking() {}
-function updateBadge(vid, done, pct) { /*...同原程式碼...*/ }
 
 // =============================================
-//  獨立出來的綁定監聽器模組
+//  綁定 YouTube 播放器 (關鍵修正版)
 // =============================================
-var ytPlayers = {}; 
-
 function bindYTPlayers() {
   if (typeof courses === "undefined" || !courses.length) return;
   courses.forEach(function(course) {
     (function(currentCourse) {
       var iframeId = "yt-" + currentCourse.id;
-      if (!document.getElementById(iframeId)) return; // 確保元素存在
-      if (ytPlayers[currentCourse.id]) return; // 避免重複綁定
+      if (!document.getElementById(iframeId)) return;
+      if (ytPlayers[currentCourse.id]) return;
 
-      console.log("正在為課程綁定監聽器：" + currentCourse.id);
+      var startPos = Math.floor((localProgress[currentCourse.id] && localProgress[currentCourse.id].currentTime) || 0);
+
       ytPlayers[currentCourse.id] = new YT.Player(iframeId, {
         height: '360',
         width: '100%',
@@ -423,9 +409,16 @@ function bindYTPlayers() {
           rel: 0,
           origin: window.location.origin,
           autoplay: 0,
-          start: Math.floor(localProgress[currentCourse.id].currentTime || 0)
+          start: startPos
         },
         events: {
+          'onReady': function(event) {
+            if (startPos > 0) {
+              // 精確移至上次紀錄點，並強制暫停防止自動播放
+              event.target.seekTo(startPos, false);
+              event.target.pauseVideo();
+            }
+          },
           'onStateChange': function(event) {
             var thisVid = "";
             try {
@@ -436,21 +429,15 @@ function bindYTPlayers() {
             }
             if (!thisVid) return;
 
-            if (event.data === 1) {
-              // 播放中 → 先停其他影片的計時器（避免同時多個影片在跑）
+            if (event.data === YT.PlayerState.PLAYING) {
+              // 使用者人工點擊播放
               Object.keys(ytTimers).forEach(function(tid) {
                 if (tid !== thisVid) stopSimpleTracking(tid);
               });
-              console.log("▶️ 播放中，啟動計時器：" + thisVid);
               startSimpleTracking(thisVid);
-            } else if (event.data === 2 || event.data === 0) {
-              // PAUSED 或 ENDED → 只在確實已啟動計時器的影片才停止
-              console.log("⏸️ 暫停/結束，凍結計時器：" + thisVid);
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
               stopSimpleTracking(thisVid);
             }
-          },
-          'onReady': function(event) {
-            event.target.seekTo(Math.floor(localProgress[currentCourse.id].currentTime || 0), true);
           }
         }
       });
@@ -458,17 +445,11 @@ function bindYTPlayers() {
   });
 }
 
-// =============================================
-//  YouTube API 載入完成的官方回呼
-// =============================================
+// YouTube API 載入完成點
 window.onYouTubeIframeAPIReady = function() {
   window.ytApiLoaded = true;
   bindYTPlayers();
 };
-
-window._ytFallbackTimer = setTimeout(function() {
-  if (!ytApiLoaded) console.log(">>> YT API fallback triggered");
-}, 8000);
 
 function updateBadge(vid, done, pct) {
   var card = document.querySelector("[data-id='"+vid+"']");
@@ -485,21 +466,17 @@ function updateBadge(vid, done, pct) {
 }
 
 // =============================================
-//  儲存進度（localStorage + GAS）
+//  儲存進度
 // =============================================
 function debouncedSave(vid) {
-  // 如果已經有儲存定時器在倒數了，就直接 return，讓它 30 秒後照常執行
   if (saveTimers[vid]) return;
-
-  // 如果沒有人在排隊，才建立一個新的 30 秒儲存倒數
   saveTimers[vid] = setTimeout(function() {
     saveNow(vid);
-    delete saveTimers[vid]; // 執行完畢後清除標記，允許下一次排隊
+    delete saveTimers[vid];
   }, 30000);
 }
 
 function saveNow(vid) {
-  console.log(">>> saveNow called, vid=", vid);
   var prog   = localProgress[vid];
   var course = courses.find(function(c){ return c.id === vid; });
   if (!prog || !course) return;
@@ -507,11 +484,10 @@ function saveNow(vid) {
   var minutes = Math.round(prog.watched / 60);
   var done    = prog.done;
 
-  // 儲存到 localStorage
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
   allRec[vid] = { minutes: minutes, done: done, currentTime: prog.currentTime, updatedAt: new Date().toISOString() };
   localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
-  // 感染控制群組邏輯：如果是感染控制影片，檢查兩部影片總觀看分鐘是否 >= 240
+
   if (["IVbYrbcB4C4","0VPBY33uJKk"].includes(vid)) {
     var infectionIds = ["IVbYrbcB4C4","0VPBY33uJKk"];
     var sumWatched = 0;
@@ -519,20 +495,18 @@ function saveNow(vid) {
       var rec = localProgress[id];
       sumWatched += rec ? rec.watched : 0;
     });
-    if (sumWatched >= 240 * 60) { // 240 minutes in seconds
+    if (sumWatched >= 240 * 60) {
       infectionIds.forEach(function(id){
         if (localProgress[id]) {
           localProgress[id].done = true;
-          // update localStorage entry for this id as well
-          var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
-          allRec[id] = { minutes: Math.round(localProgress[id].watched/60), done: true, currentTime: localProgress[id].currentTime, updatedAt: new Date().toISOString() };
+          var localRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
+          localRec[id] = { minutes: Math.round(localProgress[id].watched/60), done: true, currentTime: localProgress[id].currentTime, updatedAt: new Date().toISOString() };
+          localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(localRec));
         }
       });
-      localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
     }
   }
 
-  // 寫入 GAS（GET 參數，避開 preflight CORS）
   var staffName = localStorage.getItem("staff_name") || "";
   var currentTime = Math.floor(prog.currentTime);
   var url = GAS_URL
@@ -543,6 +517,7 @@ function saveNow(vid) {
     + "&minutes=" + encodeURIComponent(minutes)
     + "&done="   + encodeURIComponent(done)
     + "&currentTime=" + encodeURIComponent(currentTime);
+
   fetch(url)
     .then(function(resp) {
       if (resp.ok) {
@@ -553,7 +528,6 @@ function saveNow(vid) {
     })
     .catch(function(err) { console.error(">>> saveNow fetch failed:", err); showToast("⚠️ 網路異常"); });
 
-  // 更新統計
   updateStatsFromLocal();
   showSaveIndicator(vid);
 }
@@ -566,7 +540,7 @@ function showSaveIndicator(vid) {
 }
 
 // =============================================
-//  更新統計（從 localStorage）
+//  更新統計
 // =============================================
 function updateStatsFromLocal() {
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
@@ -597,7 +571,6 @@ function updateStats(records) {
 // =============================================
 function exportMyRecords() {
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
-  var nameMap = {};
   var output = [];
 
   courses.forEach(function(c) {
@@ -614,7 +587,7 @@ function exportMyRecords() {
     });
   });
 
-  var csv = "\uFEFF"; // BOM for Excel UTF-8
+  var csv = "\uFEFF";
   var keys = Object.keys(output[0]);
   csv += keys.join(",") + "\n";
   output.forEach(function(row) {
@@ -629,7 +602,7 @@ function exportMyRecords() {
 }
 
 // =============================================
-//  測試 GAS 寫入
+//  測試與登出
 // =============================================
 function testSave() {
   var vid = courses[0].id;
@@ -637,14 +610,10 @@ function testSave() {
   saveNow(vid);
 }
 
-// =============================================
-//  登出
-// =============================================
 function staffLogout() {
   localStorage.removeItem("staff_ok");
   localStorage.removeItem("staff_idCard");
   localStorage.removeItem("staff_name");
-  // 清除所有訓練紀錄
   for (var i = localStorage.length - 1; i >= 0; i--) {
     var k = localStorage.key(i);
     if (k && k.indexOf("tltn_rec_") === 0) {
@@ -654,9 +623,6 @@ function staffLogout() {
   window.location.href = "login.html";
 }
 
-// =============================================
-//  Toast 通知
-// =============================================
 function showToast(msg) {
   var t = document.getElementById("toast");
   t.textContent = msg;
@@ -664,7 +630,6 @@ function showToast(msg) {
   setTimeout(function(){ t.classList.remove("show"); }, 3500);
 }
 
-// 快速導航
 document.querySelectorAll(".quick-nav a").forEach(function(a) {
   a.addEventListener("click", function(e) {
     e.preventDefault();
@@ -674,6 +639,7 @@ document.querySelectorAll(".quick-nav a").forEach(function(a) {
     if (target) target.scrollIntoView({behavior:"smooth",block:"start"});
   });
 });
+
 window.addEventListener('beforeunload', function() {
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
   Object.keys(localProgress).forEach(function(vid) {
