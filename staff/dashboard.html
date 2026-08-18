@@ -87,7 +87,12 @@
     /* 通知toast */
     .toast { position: fixed; bottom: 24px; right: 24px; background: #2c3e50; color: #fff; padding: 14px 20px; border-radius: 8px; font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); opacity: 0; transform: translateY(20px); transition: opacity 0.3s, transform 0.3s; pointer-events: none; z-index: 9999; }
     .toast.show { opacity: 1; transform: translateY(0); }
-  </style>
+
+    .video-disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+      </style>
 </head>
 <body>
 
@@ -247,11 +252,23 @@ function fetchRecords(cb) {
       return resp.json();
     })
     .then(function(data) {
-      cb(data.records || []);
+      var local = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
+      var records = data.records || [];
+      records.forEach(function(r) {
+        if (!r.hasOwnProperty('currentTime')) {
+          r.currentTime = (local[r.videoId] && local[r.videoId].currentTime) || 0;
+        }
+      });
+      cb(records);
     })
     .catch(function(err) {
       console.warn("無法從雲端讀取紀錄，改用本地 localStorage:", err.message);
       var local = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
+      Object.keys(local).forEach(function(id) {
+        if (!local[id].hasOwnProperty('currentTime')) {
+          local[id].currentTime = 0;
+        }
+      });
       var recordsArr = Array.isArray(local) ? local : (local && typeof local === "object") ? Object.values(local) : [];
       cb(recordsArr);
     });
@@ -276,7 +293,8 @@ function buildVideoCards(records) {
       done: rec.done === true || rec.done === "完成" || rec.done === "true",
       baseWatched: (rec.minutes || 0) * 60,
       startedAt: null,
-      lastTime: null
+      lastTime: null,
+      currentTime: rec.currentTime || 0
     };
   });
 
@@ -339,6 +357,7 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
     var elapsed = Math.floor((Date.now() - prog.startedAt) / 1000) + prog.baseWatched;
     var dur = course.duration * 60;
     prog.watched = Math.min(elapsed, dur);
+    prog.currentTime = prog.watched;
     var pct = Math.min(100, Math.round((prog.watched / dur) * 100));
     var required = passMinutes[vid] && passMinutes[vid] > 0 ? passMinutes[vid] : dur * 0.9;
     prog.done = prog.watched >= required;
@@ -362,6 +381,7 @@ function stopSimpleTracking(vid) { /*...同原程式碼...*/
     prog.baseWatched = prog.watched;
     prog.startedAt = null;
   }
+  prog.currentTime = prog.watched;
   saveNow(vid);
 }
 function finishSimpleTracking(vid) { /*...同原程式碼...*/ }
@@ -383,6 +403,15 @@ function bindYTPlayers() {
 
       console.log("正在為課程綁定監聽器：" + currentCourse.id);
       ytPlayers[currentCourse.id] = new YT.Player(iframeId, {
+        height: '360',
+        width: '100%',
+        videoId: currentCourse.id,
+        playerVars: {
+          enablejsapi: 1,
+          rel: 0,
+          origin: window.location.origin,
+          start: Math.floor(localProgress[currentCourse.id].currentTime || 0)
+        },
         events: {
           'onStateChange': function(event) {
             var thisVid = "";
@@ -626,6 +655,20 @@ document.querySelectorAll(".quick-nav a").forEach(function(a) {
     var target = document.querySelector(this.getAttribute("href"));
     if (target) target.scrollIntoView({behavior:"smooth",block:"start"});
   });
+});
+window.addEventListener('beforeunload', function() {
+  var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
+  Object.keys(localProgress).forEach(function(vid) {
+    if (localProgress[vid]) {
+      allRec[vid] = {
+        minutes: Math.round(localProgress[vid].watched / 60),
+        done:    localProgress[vid].done,
+        currentTime: localProgress[vid].currentTime,
+        updatedAt: new Date().toISOString()
+      };
+    }
+  });
+  localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
 });
 </script>
 </body>
