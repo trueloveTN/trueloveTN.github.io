@@ -351,6 +351,13 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
   var prog = localProgress[vid];
   var course = courses.find(function(c){ return c.id === vid; });
   if (!prog || !course || ytTimers[vid]) return;
+  // Disable other videos UI
+  var allIframes = document.querySelectorAll('.video-embed-wrap iframe');
+  allIframes.forEach(function(ifr) {
+    if (ifr.id !== 'yt-' + vid) {
+      ifr.classList.add('video-disabled');
+    }
+  });
   prog.startedAt = Date.now();
   ytTimers[vid] = setInterval(function() {
     if (document.hidden) return;
@@ -373,6 +380,11 @@ function startSimpleTracking(vid) { /*...同原程式碼...*/
 }
 function stopSimpleTracking(vid) { /*...同原程式碼...*/ 
   if (ytTimers[vid]) { clearInterval(ytTimers[vid]); delete ytTimers[vid]; }
+  // Enable other videos UI
+  var allIframes = document.querySelectorAll('.video-embed-wrap iframe');
+  allIframes.forEach(function(ifr) {
+    ifr.classList.remove('video-disabled');
+  });
   var prog = localProgress[vid];
   var course = courses.find(function(c){ return c.id === vid; });
   if (prog && prog.startedAt && course) {
