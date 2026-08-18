@@ -505,7 +505,7 @@ function saveNow(vid) {
 
   // 儲存到 localStorage
   var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
-  allRec[vid] = { minutes: minutes, done: done, updatedAt: new Date().toISOString() };
+  allRec[vid] = { minutes: minutes, done: done, currentTime: prog.currentTime, updatedAt: new Date().toISOString() };
   localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
   // 感染控制群組邏輯：如果是感染控制影片，檢查兩部影片總觀看分鐘是否 >= 240
   if (["IVbYrbcB4C4","0VPBY33uJKk"].includes(vid)) {
@@ -521,7 +521,7 @@ function saveNow(vid) {
           localProgress[id].done = true;
           // update localStorage entry for this id as well
           var allRec = JSON.parse(localStorage.getItem("tltn_rec_" + idCard) || "{}");
-          allRec[id] = { minutes: Math.round(localProgress[id].watched/60), done: true, updatedAt: new Date().toISOString() };
+          allRec[id] = { minutes: Math.round(localProgress[id].watched/60), done: true, currentTime: localProgress[id].currentTime, updatedAt: new Date().toISOString() };
         }
       });
       localStorage.setItem("tltn_rec_" + idCard, JSON.stringify(allRec));
