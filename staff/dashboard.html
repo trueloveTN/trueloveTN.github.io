@@ -159,7 +159,7 @@
     進度在影片暫停或關閉後約 30 秒自動儲存一次。
   </p>
 
-  <!-- 影片容器（由 JS 動態產生）-->
+  <!-- 影片容器 -->
   <div id="video-list">載入課程資料中…</div>
 
   <!-- 管理員 -->
@@ -195,12 +195,13 @@ if (localStorage.getItem("staff_ok") !== "ok" || !idCard) {
 }
 
 // ── 全域狀態 ──
-var ytPlayers    = {};     // YouTube player instances
-var ytTimers     = {};     // track timers
-var localProgress= {};     // { videoId: { watched, done, baseWatched, startedAt } }
-var courses      = [];     // [{ id, title, duration }]
-var saveTimers   = {};     // debounced save timers
+var ytPlayers    = {};     
+var ytTimers     = {};     
+var localProgress= {};     
+var courses      = [];     
+var saveTimers   = {};     
 var ytApiLoaded  = false;
+var firstPlayHandled = {}; // 記錄是否已處理首次播放的精確定位
 
 // =============================================
 //  啟動
@@ -298,10 +299,13 @@ function buildVideoCards(records) {
     card.dataset.id   = course.id;
     card.dataset.dur  = course.duration * 60;
 
-    // 修正：iframe 不預載 src，完全交給 YouTube JS API 進行初始化
+    // 保留標準 iframe src 結構，載入原生封面預覽，設定 autoplay=0
+    var startPos = Math.floor(prog.currentTime || 0);
+    var embedSrc = "https://www.youtube.com/embed/" + course.id + "?enablejsapi=1&rel=0&autoplay=0&start=" + startPos;
+
     card.innerHTML =
       '<div class="video-embed-wrap">' +
-        '<iframe id="yt-' + course.id + '" width="100%" height="360" frameborder="0" allowfullscreen></iframe>' +
+        '<iframe id="yt-' + course.id + '" src="' + embedSrc + '" width="100%" height="360" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>' +
       '</div>' +
       '<div class="video-body">' +
         '<h4>' + course.title + '</h4>' +
@@ -388,7 +392,7 @@ function stopSimpleTracking(vid) {
 }
 
 // =============================================
-//  綁定 YouTube 播放器 (關鍵修正版)
+//  綁定 YouTube 播放器 (無黑屏、無自動播放修正)
 // =============================================
 function bindYTPlayers() {
   if (typeof courses === "undefined" || !courses.length) return;
@@ -398,27 +402,8 @@ function bindYTPlayers() {
       if (!document.getElementById(iframeId)) return;
       if (ytPlayers[currentCourse.id]) return;
 
-      var startPos = Math.floor((localProgress[currentCourse.id] && localProgress[currentCourse.id].currentTime) || 0);
-
       ytPlayers[currentCourse.id] = new YT.Player(iframeId, {
-        height: '360',
-        width: '100%',
-        videoId: currentCourse.id,
-        playerVars: {
-          enablejsapi: 1,
-          rel: 0,
-          origin: window.location.origin,
-          autoplay: 0,
-          start: startPos
-        },
         events: {
-          'onReady': function(event) {
-            if (startPos > 0) {
-              // 精確移至上次紀錄點，並強制暫停防止自動播放
-              event.target.seekTo(startPos, false);
-              event.target.pauseVideo();
-            }
-          },
           'onStateChange': function(event) {
             var thisVid = "";
             try {
@@ -429,13 +414,26 @@ function bindYTPlayers() {
             }
             if (!thisVid) return;
 
+            // 當使用者手動點擊「播放」時 (State = 1)
             if (event.data === YT.PlayerState.PLAYING) {
-              // 使用者人工點擊播放
+              var targetTime = Math.floor((localProgress[thisVid] && localProgress[thisVid].currentTime) || 0);
+
+              // 第一次點擊播放時，檢查是否需要強制修正到精確時間點
+              if (!firstPlayHandled[thisVid] && targetTime > 0) {
+                var cur = event.target.getCurrentTime();
+                if (Math.abs(cur - targetTime) > 5) {
+                  event.target.seekTo(targetTime, true);
+                }
+                firstPlayHandled[thisVid] = true;
+              }
+
+              // 停止其他影片計時器，啟動當前計時器
               Object.keys(ytTimers).forEach(function(tid) {
                 if (tid !== thisVid) stopSimpleTracking(tid);
               });
               startSimpleTracking(thisVid);
-            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+            } 
+            else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
               stopSimpleTracking(thisVid);
             }
           }
