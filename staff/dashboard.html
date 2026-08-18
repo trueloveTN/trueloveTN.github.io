@@ -311,7 +311,7 @@ function buildVideoCards(records) {
 
     card.innerHTML =
       '<div class="video-embed-wrap">' +
-        '<iframe src="https://www.youtube.com/embed/' + course.id + '?enablejsapi=1&rel=0&origin=' + window.location.origin + '" ' +
+        '<iframe src="https://www.youtube.com/embed/' + course.id + '?enablejsapi=1&rel=0&origin=' + window.location.origin + '&autoplay=0" ' +
         'id="yt-' + course.id + '" width="100%" height="360" frameborder="0" allowfullscreen></iframe>' +
       '</div>' +
       '<div class="video-body">' +
