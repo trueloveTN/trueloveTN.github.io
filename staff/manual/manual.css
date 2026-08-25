@@ -1,0 +1,30 @@
+/* Manual specific styles */
+.manual-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    line-height: 1.6;
+    font-size: 16pt;
+}
+.manual-content h1, .manual-content h2, .manual-content h3, .manual-content h4 {
+    color: #2c3e50;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+.manual-content h1 { font-size: 28pt; }
+.manual-content h2 { font-size: 22pt; }
+.manual-content h3 { font-size: 20pt; }
+.manual-content h4 { font-size: 18pt; }
+.manual-content p { margin-bottom: 1em; }
+.manual-content ul, .manual-content ol { margin-left: 2em; margin-bottom: 1em; }
+.manual-content table { width: 100%; border-collapse: collapse; margin-bottom: 1em; }
+.manual-content th, .manual-content td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+.manual-content th { background-color: #f2f2f2; }
+.manual-content img { max-width: 100%; height: auto; display: block; margin: 1rem auto; }
+@media (max-width: 600px) {
+    .manual-content { padding: 0.5rem; font-size: 14pt; }
+    .manual-content h1 { font-size: 24pt; }
+    .manual-content h2 { font-size: 20pt; }
+    .manual-content h3 { font-size: 18pt; }
+    .manual-content h4 { font-size: 16pt; }
+}
